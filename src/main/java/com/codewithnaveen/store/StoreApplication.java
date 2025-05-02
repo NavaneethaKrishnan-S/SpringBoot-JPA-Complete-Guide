@@ -9,7 +9,10 @@ public class StoreApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext context =  SpringApplication.run(StoreApplication.class, args);
-		var resource = context.getBean(HeavyResource.class);
+		var orderService1 = context.getBean(OrderService.class);
+		var orderService2 = context.getBean(OrderService.class);
+
+
 //		var orderService = context.getBean(OrderService.class);
 //		orderService.placeOrder();
 	}
