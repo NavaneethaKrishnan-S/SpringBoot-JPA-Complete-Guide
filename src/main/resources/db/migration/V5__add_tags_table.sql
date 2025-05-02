@@ -17,4 +17,3 @@ CREATE TABLE `store`.`user_tags` (
     REFERENCES `store`.`tags` (`id`)
     ON DELETE CASCADE);
 
-
