@@ -1,5 +1,6 @@
 package com.codewithnaveen.store;
 
+//@Service("paypal")
 public class PayPalPaymentService implements PaymentService {
 
     @Override
