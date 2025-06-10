@@ -1,7 +1,6 @@
 package com.codewithnaveen.store;
 
-import com.codewithnaveen.store.entities.Address;
-import com.codewithnaveen.store.entities.Tag;
+import com.codewithnaveen.store.entities.Profile;
 import com.codewithnaveen.store.entities.User;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -15,7 +14,12 @@ public class StoreApplication {
 				.email("naveensaravana8@gmail.com")
 				.build();
 
-		user.addTag("Premium");
+		var profile = Profile.builder()
+						.bio("Bio")
+								.build();
+
+		user.setProfile(profile);
+		profile.setUser(user);
 
 		System.out.println(user);
 
