@@ -1,6 +1,7 @@
 package com.codewithnaveen.store;
 
 import com.codewithnaveen.store.entities.Address;
+import com.codewithnaveen.store.entities.Tag;
 import com.codewithnaveen.store.entities.User;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -14,14 +15,9 @@ public class StoreApplication {
 				.email("naveensaravana8@gmail.com")
 				.build();
 
-		var address = Address.builder()
-				.city("Puducherry")
-				.state("Pondicherry")
-				.zip("605008")
-				.street("Avvai nagar")
-				.build();
+		user.addTag("Premium");
 
-		user.addAddress(address);
 		System.out.println(user);
+
 	}
 }
