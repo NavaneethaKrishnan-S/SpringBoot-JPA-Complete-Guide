@@ -8,6 +8,10 @@ import java.time.LocalDate;
 @Setter
 @Getter
 @Entity
+@Builder
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "profiles")
 public class Profile {
 
@@ -26,4 +30,10 @@ public class Profile {
 
     @Column(name = "loyalty_points")
     private String loyaltyPoints;
+
+    @OneToOne
+    @JoinColumn(name = "id")
+    @MapsId
+    @ToString.Exclude
+    private User user;
 }

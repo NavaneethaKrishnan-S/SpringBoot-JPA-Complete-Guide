@@ -9,23 +9,22 @@ import java.util.Set;
 @Setter
 @Getter
 @Entity
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
-@Table(name = "tags")
-public class Tag {
+@Table(name = "categories")
+public class Category {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private Byte id;
 
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "tags")
-    @ToString.Exclude
-    private Set<User> users = new HashSet<>();
+    @OneToMany(mappedBy = "category")
+    private Set<Product> products = new HashSet<>();
 
-    public Tag(String name) {
-        this.name = name;
-    }
 }
