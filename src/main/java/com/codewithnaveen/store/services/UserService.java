@@ -1,6 +1,7 @@
 package com.codewithnaveen.store.services;
 
 import com.codewithnaveen.store.entities.User;
+import com.codewithnaveen.store.repositories.AddressRepository;
 import com.codewithnaveen.store.repositories.ProfileRepository;
 import com.codewithnaveen.store.repositories.UserRepository;
 import jakarta.persistence.EntityManager;
@@ -14,6 +15,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final ProfileRepository profileRepository;
+    private final AddressRepository addressRepository;
 
     private final EntityManager entityManager;
 
@@ -42,5 +44,10 @@ public class UserService {
     public void showRelatedEntities(){
         var profile = profileRepository.findById(1L).orElseThrow();
         System.out.println(profile.getUser().getEmail());
+    }
+
+    public void fetchAddress(){
+        var address = addressRepository.findById(1L).orElseThrow();
+        System.out.println(address.getCity());
     }
 }
