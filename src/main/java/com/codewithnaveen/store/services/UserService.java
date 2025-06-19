@@ -1,6 +1,7 @@
 package com.codewithnaveen.store.services;
 
 import com.codewithnaveen.store.entities.User;
+import com.codewithnaveen.store.repositories.ProfileRepository;
 import com.codewithnaveen.store.repositories.UserRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final ProfileRepository profileRepository;
+
     private final EntityManager entityManager;
 
     @Transactional
@@ -33,5 +36,11 @@ public class UserService {
             System.out.println("Persistent");
         else
             System.out.println("Transient or Detached");
+    }
+
+    @Transactional
+    public void showRelatedEntities(){
+        var profile = profileRepository.findById(1L).orElseThrow();
+        System.out.println(profile.getUser().getEmail());
     }
 }
