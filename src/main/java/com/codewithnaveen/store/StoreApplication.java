@@ -1,27 +1,17 @@
 package com.codewithnaveen.store;
 
-import com.codewithnaveen.store.entities.Profile;
-import com.codewithnaveen.store.entities.User;
+import com.codewithnaveen.store.services.UserService;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 public class StoreApplication {
 
 	public static void main(String[] args) {
-		var user = User.builder()
-				.id(1L)
-				.name("Naveen")
-				.email("naveensaravana8@gmail.com")
-				.build();
+		ApplicationContext context = SpringApplication.run(StoreApplication.class);
 
-		var profile = Profile.builder()
-						.bio("Bio")
-								.build();
-
-		user.setProfile(profile);
-		profile.setUser(user);
-
-		System.out.println(user);
-
+		var userService = context.getBean(UserService.class);
+		userService.showEntityState();
 	}
 }
