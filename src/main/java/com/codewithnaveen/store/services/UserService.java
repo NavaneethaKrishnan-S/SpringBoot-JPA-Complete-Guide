@@ -1,5 +1,6 @@
 package com.codewithnaveen.store.services;
 
+import com.codewithnaveen.store.entities.Address;
 import com.codewithnaveen.store.entities.User;
 import com.codewithnaveen.store.repositories.AddressRepository;
 import com.codewithnaveen.store.repositories.ProfileRepository;
@@ -49,5 +50,25 @@ public class UserService {
     public void fetchAddress(){
         var address = addressRepository.findById(1L).orElseThrow();
         System.out.println(address.getCity());
+    }
+
+    public void persistRelated(){
+
+        var user = User.builder()
+                .email("Carlin@gmail.com")
+                .name("Carlin")
+                .password("password")
+                .build();
+
+        var address = Address.builder()
+                .zip("34758")
+                .state("San Francisco")
+                .street("Walker Street")
+                .city("Adam city")
+                .build();
+
+        user.addAddress(address);
+
+        userRepository.save(user);
     }
 }
