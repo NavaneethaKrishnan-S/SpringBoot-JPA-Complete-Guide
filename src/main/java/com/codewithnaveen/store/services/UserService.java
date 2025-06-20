@@ -75,7 +75,7 @@ public class UserService {
     @Transactional
     public void deleteRelated(){
 //        userRepository.deleteById(12L);
-        var user = userRepository.findById(15L).orElseThrow();
+        var user = userRepository.findById(20L).orElseThrow();
         var address = user.getAddresses().getFirst();
         user.removeAddress(address);
         userRepository.save(user);
