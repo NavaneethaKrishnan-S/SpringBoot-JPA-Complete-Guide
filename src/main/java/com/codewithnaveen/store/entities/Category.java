@@ -9,9 +9,7 @@ import java.util.Set;
 @Setter
 @Getter
 @Entity
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 @Table(name = "categories")
 public class Category {
@@ -27,4 +25,10 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private Set<Product> products = new HashSet<>();
 
+    public void addProduct(Product product){
+        products.add(product);
+    }
+    public Category(String name) {
+        this.name = name;
+    }
 }
