@@ -49,7 +49,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
-    private Set<Product> products = new HashSet<>();
+    private Set<Product> favoriteProducts = new HashSet<>();
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
     private Profile profile;
@@ -70,4 +70,7 @@ public class User {
         tag.getUsers().add(this);
     }
 
+    public void addFavoriteProduct(Product product) {
+        favoriteProducts.add(product);
+    }
 }
