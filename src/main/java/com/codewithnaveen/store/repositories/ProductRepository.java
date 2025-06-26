@@ -1,5 +1,7 @@
 package com.codewithnaveen.store.repositories;
 
+import com.codewithnaveen.store.dtos.ProductSummary;
+import com.codewithnaveen.store.entities.Category;
 import com.codewithnaveen.store.entities.Product;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -51,5 +53,23 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     @Modifying
     @Query("update Product p set p.price = :newPrice where p.category.id = :categoryId")
     void updatePriceByCategory(BigDecimal newPrice, Byte categoryId);
+
+    //Normal derived query method
+//    List<Product> findByCategory(Category category);
+
+    //projection with interface
+    //List<ProductSummary> findByCategory(Category category);
+
+    //Projection with DTO class
+//    List<ProductSummaryDTO> findByCategory(Category category);
+
+    //Projection with customized query
+    @Query("select p.id, p.name from Product p where p.category = :category")
+    List<ProductSummary> findByCategory(@Param("category") Category category);
+
+
+//    @Query("select new com.codewithnaveen.store.dtos.ProductSummaryDTO(p.id, p.name) from Product p where p.category = :category")
+//    List<ProductSummaryDTO> findByCategory(@Param("category") Category category);
+
 
 }
