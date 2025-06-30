@@ -59,16 +59,16 @@ public class UserService {
     public void persistRelated(){
 
         var user = User.builder()
-                .email("Carlin@gmail.com")
-                .name("Carlin")
+                .email("Hari@gmail.com")
+                .name("Hari")
                 .password("password")
                 .build();
 
         var address = Address.builder()
-                .zip("34758")
+                .zip("3472")
                 .state("San Francisco")
-                .street("Walker Street")
-                .city("Adam city")
+                .street("Andrew Street")
+                .city("New Port")
                 .build();
 
         user.addAddress(address);
@@ -126,4 +126,40 @@ public class UserService {
         productRepository.deleteById(1L);
     }
 
+    @Transactional
+    public void updateProductPrices(){
+        productRepository.updatePriceByCategory(BigDecimal.valueOf(10), (byte)1);
+    }
+
+    public void fetchProducts() {
+        var products = productRepository.findByCategory(new Category((byte)1));
+        products.forEach(System.out::println);
+    }
+
+    @Transactional
+    public void fetchUser(){
+        var user = userRepository.findByEmail("Carlin@gmail.com").orElseThrow();
+        System.out.println(user);
+    }
+
+    @Transactional
+    public void fetchUsers(){
+        var users = userRepository.findAllWithAddresses();
+        users.forEach(u -> {
+            System.out.println(u);
+            u.getAddresses().forEach(System.out::println);
+        });
+    }
+
+    @Transactional
+    public void fetchProductsUsingStoredProc() {
+        var products = productRepository.findProducts(BigDecimal.valueOf(100), BigDecimal.valueOf(150));
+        products.forEach(System.out::println);
+    }
+
+    @Transactional
+    public void printLoyalProfiles(){
+        var users = userRepository.findLoyalUsers(2);
+        users.forEach(p -> System.out.println(p.getId() + " EMAIL: " + p.getEmail()));
+    }
 }
