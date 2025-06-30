@@ -5,6 +5,7 @@ import com.codewithnaveen.store.entities.Category;
 import com.codewithnaveen.store.entities.Product;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
@@ -46,6 +47,9 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     //SQL OR JPQL
     @Query(value = "select * from products p where p.price between :min and :max order by p.name", nativeQuery = true)
     List<Product> findByPriceBetweenOrderByName(@Param("min") BigDecimal min, @Param("max") BigDecimal max);
+
+    @Procedure("findProductsByPrice")
+    List<Product> findProducts(BigDecimal min, BigDecimal max);
 
     @Query("select count(*) from Product p where p.price between :min and :max")
     long countProducts(@Param("min") BigDecimal min, @Param("max") BigDecimal max);

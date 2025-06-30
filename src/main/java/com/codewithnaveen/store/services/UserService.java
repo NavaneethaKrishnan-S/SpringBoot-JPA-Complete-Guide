@@ -151,4 +151,9 @@ public class UserService {
         });
     }
 
+    @Transactional
+    public void fetchProductsUsingStoredProc() {
+        var products = productRepository.findProducts(BigDecimal.valueOf(100), BigDecimal.valueOf(150));
+        products.forEach(System.out::println);
+    }
 }
