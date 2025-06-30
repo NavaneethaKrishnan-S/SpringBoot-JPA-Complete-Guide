@@ -181,4 +181,11 @@ public class UserService {
         var products = productRepository.findAll(example);
         products.forEach(System.out::println);
     }
+
+    @Transactional
+    public void fetchProductsByCriteria() {
+
+        var products = productRepository.findProductsByCriteria("soap", BigDecimal.valueOf(100), BigDecimal.valueOf(200));
+        products.forEach(System.out::println);
+    }
 }
