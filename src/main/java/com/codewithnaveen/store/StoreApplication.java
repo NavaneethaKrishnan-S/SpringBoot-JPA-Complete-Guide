@@ -12,6 +12,6 @@ public class StoreApplication {
 		ApplicationContext context = SpringApplication.run(StoreApplication.class);
 
 		var userService = context.getBean(UserService.class);
-		userService.printLoyalProfiles();
+		userService.fetchProductsUsingQueryByExample();
 	}
 }

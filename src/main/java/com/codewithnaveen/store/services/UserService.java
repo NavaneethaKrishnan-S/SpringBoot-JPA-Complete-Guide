@@ -8,6 +8,8 @@ import com.codewithnaveen.store.repositories.*;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -161,5 +163,22 @@ public class UserService {
     public void printLoyalProfiles(){
         var users = userRepository.findLoyalUsers(2);
         users.forEach(p -> System.out.println(p.getId() + " EMAIL: " + p.getEmail()));
+    }
+
+    @Transactional
+    public void fetchProductsUsingQueryByExample() {
+
+        var product = new Product();
+        product.setName("soap");
+
+        var matcher = ExampleMatcher.matching()
+                .withIncludeNullValues()
+                .withIgnorePaths("id", "description")
+                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+
+        var example = Example.of(product, matcher);
+
+        var products = productRepository.findAll(example);
+        products.forEach(System.out::println);
     }
 }
