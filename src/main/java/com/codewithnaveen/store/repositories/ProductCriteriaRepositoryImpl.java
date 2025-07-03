@@ -29,17 +29,19 @@ public class ProductCriteriaRepositoryImpl implements ProductCriteriaRepository{
 
         List<Predicate> predicates = new ArrayList<>();
         if (name != null){
+            //name like %name%
             predicates.add(cb.like(root.get("name"), "%" + name + "%"));
         }
         if (minPrice != null) {
+            // price >= minPrice
             predicates.add(cb.greaterThanOrEqualTo(root.get("price"), minPrice));
         }
         if (maxPrice != null) {
+            // price <= maxPrice
             predicates.add(cb.lessThanOrEqualTo(root.get("price"), minPrice));
         }
 
         cq.select(root).where(predicates.toArray(new Predicate[predicates.size()]));
-
 
         return entityManager.createQuery(cq).getResultList();
     }
