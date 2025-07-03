@@ -1,2 +1,2 @@
-# mastering-spring-boot
-A comprehensive Spring Boot learning repository covering everything from dependency injection and JPA to REST APIs and JWT security. Includes real-world projects like a shopping cart with Stripe integration. Learn to write clean, testable, and production-ready code following best practices. Perfect for mastering Spring Boot from the ground up.
+# SpringBoot-JPA-Complete-Guide
+This repository is a comprehensive Spring Boot project demonstrating effective data persistence and querying techniques using Spring Data JPA, Hibernate, and relational databases. It covers entity relationships, fetching strategies, custom queries, projections, dynamic queries (Query by Example, Criteria API, Specifications), sorting, pagination, and best practices for building robust, efficient backend applications.
